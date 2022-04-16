@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/posts'
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
+import Pagination from '../Pagination/Pagination';
+import Search from '../Search/Search';
 
 function Home() {
 
@@ -19,7 +21,9 @@ function Home() {
             <div className="content">
                 <Posts setCurrentId={setCurrentId}></Posts>
                 <aside className="right-panel">
+                    <Search></Search>
                     <Form currentId={currentId} setCurrentId={setCurrentId}></Form>
+                    <Pagination/>
                 </aside>
             </div>
         </div>

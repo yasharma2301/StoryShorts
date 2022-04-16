@@ -1,0 +1,17 @@
+.page-item {
+    padding: 8px;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.4);
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,0.7);
+    cursor: pointer;
+}
+
+.page-item:hover{
+    background-color: rgba(0,0,0,0.1);
+}

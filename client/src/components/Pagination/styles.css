@@ -1,0 +1,13 @@
+.pagination {
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    background: white;
+    height: fit-content;
+    min-width: 300px;
+    max-width: 400px;
+    height: fit-content;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

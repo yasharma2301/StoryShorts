@@ -4,6 +4,7 @@
     height: fit-content;
     background-color: white;
     max-width: 350px;
+    min-width: 250px;
 }
 
 .post-header {
