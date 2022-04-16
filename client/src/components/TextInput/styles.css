@@ -1,0 +1,17 @@
+.text-field {
+    display: block;
+    border: none;
+    padding: 12px;
+    border-radius: 4px;
+    width: 100%;
+    border: 1px solid grey;
+}
+
+.text-field::placeholder {
+    color: #222;
+    transition: color 0.15s ease;
+}
+
+.text-field:focus::placeholder {
+    color: transparent;
+}

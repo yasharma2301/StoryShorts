@@ -1,0 +1,16 @@
+.avatar-bg {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 80px;
+    height: 40px;
+    background-color: #404EED;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.avatar-bg>h4 {
+    font-weight: 400;
+}

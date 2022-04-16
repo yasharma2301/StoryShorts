@@ -1,0 +1,65 @@
+.header {
+    height: var(--header-height);
+    background: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    box-shadow: 0 4px 5px 1px rgba(0, 0, 0, 0.05);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+}
+
+.profile {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    cursor: pointer;
+}
+
+.logo-img {
+    height: 40px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px;
+}
+
+.logo-sub {
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+
+.logo-head {
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+
+.text-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.avatar-img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 560px) {
+    .logo-img,
+    .avatar-img,
+    .avatar-img-2,
+    .logo-sub,
+    .userName {
+        display: none;
+    }
+}
