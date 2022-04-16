@@ -10,6 +10,7 @@
     background: white;
     max-width: 400px;
     height: fit-content;
+    min-width: 300px;
 }
 
 .heading {
