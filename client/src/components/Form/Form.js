@@ -11,7 +11,7 @@ export default function Form({ currentId, setCurrentId }) {
 
   const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' });
   const dispatch = useDispatch();
-  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
+  const post = useSelector((state) => currentId ? state.posts.posts.find((p) => p._id === currentId) : null);
   const user = JSON.parse(localStorage.getItem('profile'))
 
   useEffect(() => {

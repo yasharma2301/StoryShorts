@@ -3,16 +3,30 @@ import Button from '../Button/Button'
 import TagPill from '../TagPill/TagPill'
 import TextInput from '../TextInput/TextInput'
 import './styles.css'
+import { getPostBySearch, getPosts } from '../../actions/posts'
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 
 export default function Search() {
 
   const [search, setSearch] = useState('')
   const [tags, setTags] = useState([])
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
 
+  const searchPost = () => {
+    if (search.trim() || tags.length>0) {
+      dispatch(getPostBySearch({ search, tags: tags.join(',') }));
+      navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`)
+    } else {
+      dispatch(getPosts(1))
+      navigate('/posts', {replace:true})
+    }
+  }
 
   const handleKeyPress = (e) => {
     if (e.keyCode === 13) {
-      console.log(e.target.value)
+      searchPost()
     }
   }
 
@@ -40,7 +54,7 @@ export default function Search() {
           return <TagPill key={`${tag}${idx}`} tagName={tag} onDelete={(e) => handleDelete(tag)}></TagPill>
         })}
       </div>
-      <Button name='Search' backgroundColor='#404EED'></Button>
+      <Button name='Search' backgroundColor='#404EED' onClick={searchPost}></Button>
     </div>
   )
 }

@@ -6,6 +6,7 @@ import Button from '../Button/Button';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
+import { toast } from 'react-toastify';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -25,9 +26,12 @@ function Auth() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
         if (isSignUp && (form.firstName == '' || form.lastName == '' || form.email == '' || form.password == '' || form.confirmPassword == '')) {
+            toast.error('All fields are required!');
             return;
-        } else if(!isSignUp && (form.email == '' || form.password == '')){
+        } else if (!isSignUp && (form.email == '' || form.password == '')) {
+            toast.error('All fields are required!');
             return;
         }
         if (isSignUp) {

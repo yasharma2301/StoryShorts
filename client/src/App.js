@@ -5,6 +5,8 @@ import './index.css'
 import Auth from './components/Auth/Auth';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import PostDetails from './components/PostDetails/PostDetails'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
     const user = JSON.parse(localStorage.getItem('profile'))
@@ -12,6 +14,7 @@ const App = () => {
     return (
         <BrowserRouter>
             <Header></Header>
+            <ToastContainer closeButton={false} draggable pauseOnHover position="top-right" autoClose={3000} hideProgressBar={false} newestOnTop={false}/>
             <Routes>
                 <Route path='/' exact element={<Navigate replace to="/posts"/>} />
                 <Route path='/posts' exact element={<Home />} />
