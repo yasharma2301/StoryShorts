@@ -12,7 +12,7 @@ export default function Posts({setCurrentId}) {
   if (!posts?.length && !isLoading) return 'No posts';
 
   return (
-    isLoading ? <ClipLoader /> : (
+    isLoading ? <div className='loader'><ClipLoader size={50} /></div>  : (
       <div className='posts'>
         {posts.map((post) => (
           <Post setCurrentId={setCurrentId} post={post} key={post._id}/>

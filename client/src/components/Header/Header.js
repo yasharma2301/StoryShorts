@@ -49,7 +49,7 @@ export default function Header() {
           <div className="profile">
             {
               user?.result?.googleId ? (
-                <img className='avatar-img' alt={user.result.name.charAt(0)} src={user.result.imageUrl} />
+                <img className='avatar-img' alt={" "} src={user.result.imageUrl} />
               ) : 
               (
                   <Avatar className='avatar-img-2' character={user.result.name.charAt(0)}></Avatar>

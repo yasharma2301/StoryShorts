@@ -1,14 +1,15 @@
 import * as api from '../api'
 import { AUTH } from '../constants/actionTypes';
+import { toast } from 'react-toastify';
 
 export const signin = (form, navigate) => async (dispatch) => {
+    // api.signIn(form).then(res => console.log(res)).catch(err => console.log(err.response))
     try {
-        const data = await api.signIn(form);
-        console.log(data.json())
+        const { data } = await api.signIn(form);
         dispatch({ type: AUTH, data });
         navigate('/'  , { replace: true })
     } catch (err) {
-        console.log(err)
+        toast.error(err.response.data.message || 'Something went wrong');
     }
 }
 
@@ -18,6 +19,6 @@ export const signup = (form, navigate) => async (dispatch) => {
         dispatch({ type: AUTH, data });
         navigate('/'  , { replace: true })
     } catch (err) {
-        console.log(err)
+        toast.error(err.response.data.message || 'Something went wrong');
     }
 }

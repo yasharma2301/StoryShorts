@@ -21,6 +21,7 @@ function Auth() {
 
     const switchMode = (e) => {
         e.preventDefault()
+        setForm({ ...form, email: '', password:'' });
         setIsSignup((prevIsSignup) => !prevIsSignup);
     };
 
@@ -44,7 +45,7 @@ function Auth() {
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
     const googleFailure = () => {
-        console.log('Google Sign in failed. Try again later!')
+        toast.error('Google Sign in failed. Try again later!')
     }
 
     const googleSuccess = async (res) => {
@@ -66,21 +67,21 @@ function Auth() {
                     {
                         isSignUp && (
                             <>
-                                <TextInput placeholder='First Name *' name="firstName" onChange={handleChange}></TextInput>
-                                <TextInput placeholder='Last Name *' name="lastName" onChange={handleChange}></TextInput>
+                                <TextInput placeholder='First Name *' name="firstName" onChange={handleChange}  value={form.firstName}></TextInput>
+                                <TextInput placeholder='Last Name *' name="lastName" onChange={handleChange}  value={form.lastName}></TextInput>
                             </>
                         )
                     }
                     <div className="span-2">
-                        <TextInput type='email' placeholder='Email *' name="email" onChange={handleChange}></TextInput>
+                        <TextInput type='email' placeholder='Email *' name="email" onChange={handleChange} value={form.email}></TextInput>
                     </div>
                     <div className="span-2">
-                        <TextInput type='password' placeholder='Password *' name="password" onChange={handleChange}></TextInput>
+                        <TextInput type='password' placeholder='Password *' name="password" onChange={handleChange} value={form.password}></TextInput>
                     </div>
                     {
                         isSignUp && (
                             <div className="span-2">
-                                <TextInput type='password' placeholder='Confirm Password *' name="confirmPassword" onChange={handleChange}></TextInput>
+                                <TextInput type='password' placeholder='Confirm Password *' name="confirmPassword" onChange={handleChange} value={form.confirmPassword}></TextInput>
                             </div>
                         )
                     }
