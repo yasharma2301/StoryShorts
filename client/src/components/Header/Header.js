@@ -28,7 +28,7 @@ export default function Header() {
 
   const logout = () => {
     dispath({ type: 'LOGOUT' })
-    navigate('/auth' , { replace: true });
+    navigate('/auth');
     setUser(null)
   }
 

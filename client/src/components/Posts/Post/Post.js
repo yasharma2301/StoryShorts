@@ -5,27 +5,34 @@ import './styles.css'
 import { useDispatch } from 'react-redux'
 import moment from 'moment'
 import { deletePost, likePost } from '../../../actions/posts'
+import {useNavigate} from 'react-router-dom'
 
 export default function Post({ post, setCurrentId }) {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   const user = JSON.parse(localStorage.getItem('profile'));
 
   const Likes = () => {
     if (post.likes.length > 0) {
       return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
         ? (
-          <><MdThumbUpAlt className={user?.result ? 'post-icon like': 'post-icon like disable'} />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}</>
+          <><MdThumbUpAlt className={user?.result ? 'post-icon like' : 'post-icon like disable'} />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}`}</>
         ) : (
-          <><MdThumbUpAlt className={user?.result ? 'post-icon like': 'post-icon like disable'} />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
+          <><MdThumbUpAlt className={user?.result ? 'post-icon like' : 'post-icon like disable'} />&nbsp;{post.likes.length} {post.likes.length === 1 ? 'Like' : 'Likes'}</>
         );
     }
 
-    return <><MdThumbUpAlt className={user?.result ? 'post-icon like': 'post-icon like disable'} />&nbsp;Like</>;
+    return <><MdThumbUpAlt className={user?.result ? 'post-icon like' : 'post-icon like disable'} />&nbsp;Like</>;
   };
 
+  const openPost = (e) => {
+    navigate(`/posts/${post._id}`)
+    console.log('Click Post')
+  }
+
   return (
-    <div className='post'>
+    <div className='post' onClick={openPost}>
       <img src={post.selectedFile} alt="image" className="post-image" />
       <div className="post-header">
         <h3 className="post-author">{post.name}</h3>
@@ -33,7 +40,10 @@ export default function Post({ post, setCurrentId }) {
       </div>
       {
         (user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
-        (<BsThreeDots className='post-edit' onClick={() => setCurrentId(post._id)} />)
+        (<BsThreeDots className='post-edit' onClick={(e) => {
+          setCurrentId(post._id)
+          e.stopPropagation()
+        }} />)
       }
 
       <div className="story">
@@ -47,12 +57,18 @@ export default function Post({ post, setCurrentId }) {
           {post.message}
         </div>
         <div className="post-actions">
-          <div className={user?.result ? 'action': 'action disable'} onClick={() => dispatch(likePost(post._id))} >
+          <div className={user?.result ? 'action' : 'action disable'} onClick={(e) => {
+            dispatch(likePost(post._id))
+            e.stopPropagation()
+          }} >
             <Likes></Likes>
           </div>
           {
             (user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
-            (<div className="action" onClick={() => dispatch(deletePost(post._id))}>
+            (<div className="action" onClick={(e) => {
+              dispatch(deletePost(post._id))
+              e.stopPropagation()
+            }}>
               <MdDelete className='post-icon delete' />
               <span>DELETE</span>
             </div>)

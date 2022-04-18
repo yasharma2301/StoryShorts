@@ -5,6 +5,7 @@
     background-color: white;
     max-width: 350px;
     min-width: 300px;
+    cursor: pointer;
 }
 
 .post-header {

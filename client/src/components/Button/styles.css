@@ -18,3 +18,8 @@ button {
 button:hover {
     transform: scale(1.01);
 }
+
+.disabled {
+    user-select: none;
+    background-color: gray;
+}

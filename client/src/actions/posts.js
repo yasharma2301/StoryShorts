@@ -4,22 +4,21 @@ import { FETCH_BY_SEARCH, FETCH_ALL, DELETE, CREATE, LIKE, UPDATE, START_LOADING
 // Action Creators
 export const getPost = (id) => async (dispatch) => {
     try {
-        dispatch({type: START_LOADING})
+        dispatch({ type: START_LOADING })
         const { data } = await api.fetchPost(id);
         dispatch({ type: FETCH_POST, payload: data });
-        dispatch({type: END_LOADING})
+        dispatch({ type: END_LOADING })
     } catch (error) {
         console.log(error)
     }
 }
 
-
 export const getPosts = (page) => async (dispatch) => {
     try {
-        dispatch({type: START_LOADING})
+        dispatch({ type: START_LOADING })
         const { data } = await api.fetchPosts(page);
         dispatch({ type: FETCH_ALL, payload: data });
-        dispatch({type: END_LOADING})
+        dispatch({ type: END_LOADING })
     } catch (error) {
         console.log(error)
     }
@@ -27,30 +26,34 @@ export const getPosts = (page) => async (dispatch) => {
 
 export const getPostBySearch = (searchQuery) => async (dispatch) => {
     try {
-        dispatch({type: START_LOADING})
+        dispatch({ type: START_LOADING })
         const { data: { data } } = await api.fetchPostsBySearch(searchQuery)
         dispatch({ type: FETCH_BY_SEARCH, payload: data });
-        dispatch({type: END_LOADING})
+        dispatch({ type: END_LOADING })
     } catch (error) {
         console.log(error)
     }
 }
 
-export const createPost = (post) => async (dispatch) => {
+export const createPost = (post, navigate) => async (dispatch) => {
     try {
-        dispatch({type: START_LOADING})
+        dispatch({ type: START_LOADING })
         const { data } = await api.createPost(post);
         dispatch({ type: CREATE, payload: data })
-        dispatch({type: END_LOADING})
+        navigate(`/posts/${data._id}`)
+        dispatch({ type: END_LOADING })
     } catch (error) {
         console.log(error)
     }
 }
 
-export const updatePost = (id, post) => async (dispatch) => {
+export const updatePost = (id, post, navigate) => async (dispatch) => {
     try {
+        dispatch({ type: START_LOADING })
         const { data } = await api.updatePost(id, post);
         dispatch({ type: UPDATE, payload: data });
+        navigate(`/posts/${data._id}`)
+        dispatch({ type: END_LOADING })
     } catch (error) {
         console.log(error)
     }
