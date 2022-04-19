@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { createPost, updatePost } from '../../actions/posts'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import TextBox from '../TextBox/TextBox'
 
 export default function Form({ currentId, setCurrentId }) {
 
@@ -49,7 +50,7 @@ export default function Form({ currentId, setCurrentId }) {
     <form className='form' autoComplete='off' noValidate onSubmit={handleSubmit}>
       <h3 className='heading'>{`${currentId ? 'Edit the ' : 'Create a '}Story`}</h3>
       <TextInput placeholder='Title' value={postData.title} onChange={(e) => setPostData({ ...postData, title: e.target.value })}></TextInput>
-      <TextInput placeholder='Story Description' value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })}></TextInput>
+      <TextBox background='white' placeholder='Story Description' value={postData.message} onChange={(e) => setPostData({ ...postData, message: e.target.value })}></TextBox>
       <TextInput placeholder='Tags (comma separated)' value={postData.tags} onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}></TextInput>
       <div className='file-input'>
         <FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} />

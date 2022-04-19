@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Button from '../Button/Button';
 import Avatar from '../Avatar/Avatar';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
 import decode from 'jwt-decode';
 
 export default function Header() {
@@ -13,6 +13,7 @@ export default function Header() {
   const dispath = useDispatch()
   const navigate = useNavigate();
   const location = useLocation()
+  console.log(user)
 
   useEffect(() => {
     const token = user?.token;
@@ -28,8 +29,8 @@ export default function Header() {
 
   const logout = () => {
     dispath({ type: 'LOGOUT' })
-    navigate('/auth');
     setUser(null)
+    navigate('/auth', { replace: true });
   }
 
   return (
@@ -62,9 +63,9 @@ export default function Header() {
             <Button name="Logout" onClick={logout} backgroundColor="#ff5252" />
           </div>
         ) : (
-          <Link to='/auth' className='text-link'>
-            <Button name="Login" />
-          </Link>
+            <Button name="Login" onClick={() => {
+              navigate('/auth', {replace: true})
+            }} />
         )}
       </div>
     </div>

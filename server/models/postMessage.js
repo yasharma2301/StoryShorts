@@ -9,7 +9,11 @@ const postSchema = mongoose.Schema({
     selectedFile: String,
     likes: {
         type: [String],
-        default: [],
+        default: []
+    },
+    comments: {
+        type: [String],
+        default: []
     },
     createdAt: {
         type: Date,

@@ -5,6 +5,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import './styles.css'
 import { getPost, getPostBySearch } from '../../actions/posts'
 import ClipLoader from "react-spinners/ClipLoader";
+import Comments from '../Comments/Comments'
 
 export default function PostDetails() {
   const { post, posts, isLoading } = useSelector((state) => state.posts)
@@ -47,6 +48,7 @@ export default function PostDetails() {
                 <div className='post-detail-message'>{post.message}</div>
                 <h4 className='post-detail-creator'>{`Created By: ${post.name}`}</h4>
                 <div className='post-detail-time'>{moment(post.createdAt).fromNow()}</div>
+                <Comments post={post}/>
               </div>
               <img src={post.selectedFile || 'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png'} alt="image" className="post-detail-image" />
             </div>
