@@ -13,25 +13,24 @@ export default function Header() {
   const dispath = useDispatch()
   const navigate = useNavigate();
   const location = useLocation()
-  console.log(user)
+
+  const logout = () => {
+    dispath({ type: 'LOGOUT' })
+    navigate('/auth', { replace: true });
+    setUser(null);
+  }
 
   useEffect(() => {
     const token = user?.token;
-    if(token) {
+    if (token) {
       const decodedToken = decode(token);
-      if(decodedToken.exp * 1000 < new Date().getTime){
+      if (decodedToken.exp * 1000 < new Date().getTime) {
         logout();
       }
     }
 
     setUser(JSON.parse(localStorage.getItem('profile')))
   }, [location])
-
-  const logout = () => {
-    dispath({ type: 'LOGOUT' })
-    setUser(null)
-    navigate('/auth', { replace: true });
-  }
 
   return (
     <div className="header">
@@ -51,21 +50,21 @@ export default function Header() {
             {
               user?.result?.googleId ? (
                 <img className='avatar-img' alt={" "} src={user.result.imageUrl} />
-              ) : 
-              (
+              ) :
+                (
                   <Avatar className='avatar-img-2' character={user.result.name.charAt(0)}></Avatar>
-              )
+                )
             }
-            
+
             <div className="userName">
               {user.result.name}
             </div>
             <Button name="Logout" onClick={logout} backgroundColor="#ff5252" />
           </div>
-        ) : (
-            <Button name="Login" onClick={() => {
-              navigate('/auth', {replace: true})
-            }} />
+        ) : location.pathname === '/posts' && (
+          <Button name="Login" onClick={() => {
+            window.location.href = window.location.href.replace('posts', 'auth');
+          }} />
         )}
       </div>
     </div>

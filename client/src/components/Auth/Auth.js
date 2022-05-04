@@ -45,7 +45,7 @@ function Auth() {
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
     const googleFailure = () => {
-        toast.error('Google Sign in failed. Try again later!')
+        console.log('Login google failed. Try again in few seconds.');
     }
 
     const googleSuccess = async (res) => {

@@ -7,8 +7,6 @@ import ClipLoader from "react-spinners/ClipLoader";
 export default function Posts({setCurrentId}) {
   const { posts, isLoading } = useSelector((state) =>  state.posts);
 
-
-
   if (!posts?.length && !isLoading) return 'No posts';
 
   return (
