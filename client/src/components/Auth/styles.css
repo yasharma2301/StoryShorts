@@ -8,11 +8,17 @@
 
 .wrapper {
     max-width: 500px;
-    min-width: 300px;
+    min-width: 450px;
     background-color: white;
     border: 1px solid rgba(0, 0, 0, 0.4);
     padding: 20px;
     text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+    .wrapper {
+        min-width: 300px;
+    }
 }
 
 .inputs {

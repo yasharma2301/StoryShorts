@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API = axios.create({ baseURL: "https://story-shorts.herokuapp.com/" })
+const API = axios.create({ baseURL: "https://story-shorts-backend.onrender.com/" })
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {
